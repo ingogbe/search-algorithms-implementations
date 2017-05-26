@@ -1,0 +1,68 @@
+inicial(Arad).
+final(Bucharest).
+caminho(Arad, Zerind, 75).
+caminho(Arad, Sibiu, 140).
+caminho(Arad, Timisoara, 118).
+caminho(Zerind, Oradea, 71).
+caminho(Zerind, Arad, 75).
+caminho(Oradea, Sibiu, 151).
+caminho(Oradea, Zerind, 71).
+caminho(Timisoara, Lugoj, 111).
+caminho(Timisoara, Arad, 118).
+caminho(Lugoj, Mehadia, 70).
+caminho(Lugoj, Timisoara, 111).
+caminho(Mehadia, Dobreta, 75).
+caminho(Mehadia, Lugoj, 70).
+caminho(Dobreta, Craiova, 120).
+caminho(Dobreta, Mehadia, 75).
+caminho(Craiova, Rimnicu Vilcea, 146).
+caminho(Craiova, Pitesti, 138).
+caminho(Craiova, Dobreta, 120).
+caminho(Rimnicu Vilcea, Sibiu, 80).
+caminho(Rimnicu Vilcea, Pitesti, 97).
+caminho(Rimnicu Vilcea, Craiova, 146).
+caminho(Pitesti, Bucharest, 101).
+caminho(Pitesti, Craiova, 138).
+caminho(Pitesti, Rimnicu Vilcea, 97).
+caminho(Sibiu, Fagaras, 99).
+caminho(Sibiu, Rimnicu Vilcea, 80).
+caminho(Sibiu, Arad, 140).
+caminho(Sibiu, Oradea, 151).
+caminho(Fagaras, Bucharest, 211).
+caminho(Fagaras, Sibiu, 99).
+caminho(Bucharest, Giurgiu, 90).
+caminho(Bucharest, Urziceni, 85).
+caminho(Bucharest, Fagaras, 211).
+caminho(Bucharest, Pitesti, 101).
+caminho(Urziceni, Hirsova, 98).
+caminho(Urziceni, Bucharest, 85).
+caminho(Urziceni, Vaslui, 142).
+caminho(Giurgiu, Bucharest, 90).
+caminho(Hirsova, Eforie, 86).
+caminho(Hirsova, Urziceni, 98).
+caminho(Eforie, Hirsova, 86).
+caminho(Vaslui, Iasi, 92).
+caminho(Vaslui, Urziceni, 142).
+caminho(Iasi, Neamt, 87).
+caminho(Iasi, Vaslui, 92).
+caminho(Neamt, Iasi, 87).
+h(Arad, Bucharest, 366).
+h(Bucharest, Bucharest, 0).
+h(Craiova, Bucharest, 160).
+h(Dobreta, Bucharest, 242).
+h(Eforie, Bucharest, 161).
+h(Fagaras, Bucharest, 178).
+h(Giurgiu, Bucharest, 77).
+h(Hirsova, Bucharest, 151).
+h(Iasi, Bucharest, 226).
+h(Lugoj, Bucharest, 244).
+h(Mehadia, Bucharest, 241).
+h(Neamt, Bucharest, 234).
+h(Oradea, Bucharest, 280).
+h(Pitesti, Bucharest, 98).
+h(Rimnicu Vilcea, Bucharest, 193).
+h(Sibiu, Bucharest, 253).
+h(Timisoara, Bucharest, 329).
+h(Urziceni, Bucharest, 80).
+h(Vaslui, Bucharest, 199).
+h(Zerind, Bucharest, 374).
