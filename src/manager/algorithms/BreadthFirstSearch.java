@@ -15,9 +15,11 @@ public class BreadthFirstSearch {
 		int nEdges = ucLoadFile.getNumberOfEdges();
 		int nInteractions = 0;
 		int nInteractionsUntilFinalVertex = 0;
+		int nMaxVertexInMemory = 0;
 		
 		ArrayList<Vertex> vertexList = new ArrayList<Vertex>();
 		vertexList.add(initialVertex);
+		nMaxVertexInMemory = checkVertexInMemory(vertexList, nMaxVertexInMemory);
 		
 		Vertex currentVertex = initialVertex;
 
@@ -38,6 +40,7 @@ public class BreadthFirstSearch {
 					}
 					
 					vertexList.add(e.getV1());
+					nMaxVertexInMemory = checkVertexInMemory(vertexList, nMaxVertexInMemory);
 					System.out.print(e.getV1() + " ");
 				}
 				
@@ -67,7 +70,16 @@ public class BreadthFirstSearch {
 		System.out.println("RESULT:");
 		System.out.println("Number Of Interactions = " + nInteractions);
 		System.out.println("Number Of Interactions Until End = " + nInteractionsUntilFinalVertex);
+		System.out.println("Number of Max Vertex In Memory = " + nMaxVertexInMemory);
 		System.out.println("================================\n");
 		
+	}
+	
+	public static int checkVertexInMemory(ArrayList<Vertex> array, int nMaxVertexInMemory) {
+		if(nMaxVertexInMemory < array.size()) {
+			nMaxVertexInMemory = array.size();
+		}
+		
+		return nMaxVertexInMemory;
 	}
 }

@@ -16,6 +16,7 @@ public class AStar {
 		int nEdges = ucLoadFile.getNumberOfEdges();
 		int nHeuristics = ucLoadFile.getNumberOfHeuristics();
 		int nInteractions = 0;
+		int nMaxVertexInMemory = 0;
 		
 		ArrayList<VertexPath> vertexPaths = new ArrayList<VertexPath>();
 		VertexPath initialVP = new VertexPath();
@@ -29,6 +30,8 @@ public class AStar {
 		}
 		
 		vertexPaths.add(initialVP);
+		nMaxVertexInMemory = checkVertexInMemory(vertexPaths, nMaxVertexInMemory);
+		
 		int itsOver = 0;
 		VertexPath lesserWeigthVP = null;
 		
@@ -53,6 +56,7 @@ public class AStar {
 				}
 				
 				auxVertexPaths.add(vp);
+				nMaxVertexInMemory = checkVertexInMemory(auxVertexPaths, nMaxVertexInMemory);
 			}
 			
 			if(lesserWeigthVP != null){
@@ -74,6 +78,8 @@ public class AStar {
 						}
 						
 						auxVertexPaths.add(newVP);
+						nMaxVertexInMemory = checkVertexInMemory(auxVertexPaths, nMaxVertexInMemory);
+						
 						neighbors++;
 					}
 				}
@@ -81,6 +87,7 @@ public class AStar {
 				if(neighbors == 0){
 					lesserWeigthVP.setEnd(true);
 					auxVertexPaths.add(lesserWeigthVP);
+					nMaxVertexInMemory = checkVertexInMemory(auxVertexPaths, nMaxVertexInMemory);
 				}
 			}
 			
@@ -96,6 +103,16 @@ public class AStar {
 		System.out.println("RESULT:");
 		System.out.println(lesserWeigthVP);
 		System.out.println("Number Of Interactions = " + nInteractions);
+		System.out.println("Number of Max Vertex In Memory = " + nMaxVertexInMemory);
 		System.out.println("================================\n");
+	}
+	
+	
+	public static int checkVertexInMemory(ArrayList<VertexPath> array, int nMaxVertexInMemory) {
+		if(nMaxVertexInMemory < array.size()) {
+			nMaxVertexInMemory = array.size();
+		}
+		
+		return nMaxVertexInMemory;
 	}
 }

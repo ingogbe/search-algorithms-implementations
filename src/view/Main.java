@@ -3,6 +3,7 @@ package view;
 import java.io.File;
 
 import manager.algorithms.AStar;
+import manager.algorithms.BreadthFirstSearch;
 import manager.file.UCLoadFile;
 
 public class Main {
@@ -16,7 +17,7 @@ public class Main {
 		System.out.println("FINAL VERTEX   = " + ucLoadFile.getFinalVertex().toString());
 		System.out.println("================================");
 		
-		//BreadthFirstSearch.normalBreadthFirstSearch(ucLoadFile.getInitialVertex(), ucLoadFile.getFinalVertex(), file);
+		//BreadthFirstSearch.breadthFirstSearch(ucLoadFile.getInitialVertex(), ucLoadFile.getFinalVertex(), file);
 		AStar.heuristicAStar(ucLoadFile.getInitialVertex(), ucLoadFile.getFinalVertex(), file);
 		
 	}
