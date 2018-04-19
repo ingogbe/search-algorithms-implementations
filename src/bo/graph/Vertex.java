@@ -22,7 +22,7 @@ public class Vertex {
 	}
 	
 	public boolean compare(Vertex v){
-		if( this.getName().equals(v.getName())){
+		if(this.getName().equals(v.getName())){
 			return true;
 		}
 		else{

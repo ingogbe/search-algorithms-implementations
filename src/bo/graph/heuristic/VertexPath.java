@@ -94,10 +94,12 @@ public class VertexPath {
 		return this.vertexList.get(this.vertexList.size()-1);
 	}
 	
+	//f(n) = g(n) + h(n)
 	public float getWeigth(){
 		return (this.getEdgeValues() + this.getHeuristicValue());
 	}
 	
+	//Faz um cópia desse VertexPath
 	public VertexPath copy(){
 		VertexPath copy = new VertexPath();
 		
@@ -121,6 +123,10 @@ public class VertexPath {
 		}
 		
 		return s;
+	}
+	
+	public String getEvaluationString() {
+		return "Evaluation Function = f(" + this.getLastVertex().getName() + ") = g(" + this.getEdgeValues() + ") + h(" + this.getHeuristicValue() + ") = " + (this.getEdgeValues() + this.getHeuristicValue());
 	}
 
 	@Override

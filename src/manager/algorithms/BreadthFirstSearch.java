@@ -23,6 +23,7 @@ public class BreadthFirstSearch {
 		
 		Vertex currentVertex = initialVertex;
 
+		//Enquanto a lista de vertices a se expandir não for vazia
 		while(!vertexList.isEmpty()){
 			nInteractions++;
 			System.out.println("Current vertex = " + currentVertex);
@@ -33,14 +34,17 @@ public class BreadthFirstSearch {
 			while((i+1) <= nEdges){
 				Edge e = ucLoadFile.getEdge(i);
 				
+				//Pega as arestas as quais o vertice inicial é o vertice atual
 				if(currentVertex.compare(e.getV0())){
 					if(print){
 						System.out.print("Neighbors = ");
 						print = false;
 					}
 					
+					//Adiciona os vertices destino destas arestas a fronteira
 					vertexList.add(e.getV1());
 					nMaxVertexInMemory = checkVertexInMemory(vertexList, nMaxVertexInMemory);
+					//Imprime vizinhos do vertice atual
 					System.out.print(e.getV1() + " ");
 				}
 				
@@ -51,18 +55,27 @@ public class BreadthFirstSearch {
 				System.out.println("");
 			}
 			
+			//Remove o vertice atual da fronteira
 			vertexList.remove(currentVertex);
+			
+			//Se a lista não estiver vazia pega o primeiro nó para expandi-lo
 			if(!vertexList.isEmpty())
 				currentVertex = vertexList.get(0);
 			
+			//Imprime lista atual
 			System.out.print("List = ");
 			for(Vertex v: vertexList){
 				System.out.print(v.getName() + " ");
+				
 			}
 			System.out.println("----------\n");
-
 			
-			if(!currentVertex.compare(finalVertex)){
+			//Para ao encontrar a resposta
+			if(currentVertex.compare(finalVertex)){
+				//break;
+			}
+			else {
+				//Contador de iterações até encontrar a resposta
 				nInteractionsUntilFinalVertex++;
 			}
 		}
