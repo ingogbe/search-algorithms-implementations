@@ -72,7 +72,8 @@ public class BreadthFirstSearch {
 			
 			//Para ao encontrar a resposta
 			if(currentVertex.compare(finalVertex)){
-				//break;
+				nInteractionsUntilFinalVertex++;
+				break;
 			}
 			else {
 				//Contador de iterações até encontrar a resposta
