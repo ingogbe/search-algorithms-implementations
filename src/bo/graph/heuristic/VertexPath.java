@@ -116,6 +116,8 @@ public class VertexPath {
 		
 	}
 	
+
+	
 	public String getPathString(){
 		String s = "";
 		for(Vertex v : this.getVertexList()){

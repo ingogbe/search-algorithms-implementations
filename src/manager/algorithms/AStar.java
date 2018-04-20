@@ -23,6 +23,7 @@ public class AStar {
 		
 		//Caminho
 		VertexPath initialVP = new VertexPath();
+		boolean heuristcNotFound = true;
 		
 		/*
 		 * Inicializando caminho inicial
@@ -33,8 +34,14 @@ public class AStar {
 			Heuristic heuristic = ucLoadFile.getHeuristic(h);
 			if(heuristic.getV0().compare(initialVertex)){
 				initialVP.addVertex(initialVertex, 0, heuristic.getValue());
+				heuristcNotFound = false;
 				break;
 			}
+		}
+		
+		//Se não for encontrado heuristica, coloca o valor 0
+		if(heuristcNotFound) {
+			initialVP.addVertex(initialVertex, 0, 0);
 		}
 		
 		vertexPaths.add(initialVP);
@@ -45,6 +52,7 @@ public class AStar {
 		VertexPath lesserWeigthVP = null;
 		
 		while(completedVPs != vertexPaths.size()){
+			
 			nInteractions++;
 			//Zera contador de caminhos completos ao inicio de cada loop
 			completedVPs = 0;
@@ -68,6 +76,7 @@ public class AStar {
 					completedVPs++;
 				}
 			}
+			System.out.println();
 			
 			//Se o ultimo vertice no menor caminhos atual for igual ao vertice final, encerra a busca
 			if(lesserWeigthVP.getLastVertex().compare(finalVertex)){
@@ -95,6 +104,7 @@ public class AStar {
 						//Cria uma copia do caminho de menor peso atual, que sera usada para gerar um novo caminho
 						//Obs.: Mantem a original por causa do IF acima
 						VertexPath newVP = lesserWeigthVP.copy();
+						heuristcNotFound = true;
 						
 						for(int h = 0; h < nHeuristics; h++){
 							Heuristic heuristic = ucLoadFile.getHeuristic(h);
@@ -105,12 +115,18 @@ public class AStar {
 							 * 
 							 * Obs.: O heuristic.getV1() sempre será o destino final
 							 */
+							
 							if(heuristic.getV0().compare(e.getV1())){
-								
 								//Adiciona esse vertice com seu valor de aresta e o respectivo valor da heuristica
 								newVP.addVertex(e.getV1(), e.getValue(), heuristic.getValue());
+								heuristcNotFound = false;
 								break;
 							}
+						}
+						
+						//Se não for encontrado heuristica, coloca o valor 0
+						if(heuristcNotFound) {
+							newVP.addVertex(e.getV1(), e.getValue(), 0);
 						}
 						
 						//Adiciona esse novo caminho aos caminhos possiveis
@@ -124,9 +140,13 @@ public class AStar {
 				//Se não houver vizinhos, este caminho não tem mais para onde percorrer e chega ao fim
 				if(neighbors == 0){
 					lesserWeigthVP.setEnd(true);
+					
+					
+					//Tirei essa parte porque não tem necessidade manter na memória caminhos que não levam a lugar nenhum
+					
 					//Adiciona novamente a lista de caminhos
-					vertexPaths.add(lesserWeigthVP);
-					nMaxVertexInMemory = checkVertexInMemory(vertexPaths, nMaxVertexInMemory);
+					//vertexPaths.add(lesserWeigthVP);
+					//nMaxVertexInMemory = checkVertexInMemory(vertexPaths, nMaxVertexInMemory);
 				}
 			}
 			
